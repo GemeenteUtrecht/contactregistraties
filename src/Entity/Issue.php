@@ -24,7 +24,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  * @version    	1.0
  *
  * @link   		http//:www.conduction.nl
- * @package		Commen Ground
+ * @package		Common Ground
  * @subpackage  Issue
  * 
  *  @ApiResource( 
@@ -34,6 +34,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/issues",
  *  		"openapi_context" = {
+ * 				"summary" = "Haalt een verzameling van issues op"
  *  		}
  *  	},
  *  	"post"={
@@ -41,6 +42,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/issues",
  *  		"openapi_context" = {
+ * 					"summary" = "Maak een issue aan"
  *  		}
  *  	}
  *  },
@@ -50,6 +52,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/issues/{id}",
  *  		"openapi_context" = {
+ * 				"summary" = "Haal een specifiek issue op"
  *  		}
  *  	},
  *     "put"={
@@ -57,6 +60,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/issues/{id}",
  *  		"openapi_context" = {
+ * 				"summary" = "Vervang een specifiek issue"
  *  		}
  *  	},
  *     "delete"={
@@ -64,6 +68,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/issues/{id}",
  *  		"openapi_context" = {
+ * 				"summary" = "Verwijder een specifiek issue"
  *  		}
  *  	},
  *  }
@@ -116,7 +121,7 @@ class Issue implements StringableInterface
 	public $identificatie;
 	
 	/**
-	 * Het Huwelijk waartoe deze partner behoord
+	 * De organisatie waartoe dit issue behoord
 	 *
 	 * @var \App\Entity\Organisatie
 	 * @ORM\ManyToOne(targetEntity="\App\Entity\Organisatie", cascade={"persist", "remove"}, inversedBy="issues")
@@ -162,8 +167,8 @@ class Issue implements StringableInterface
 	 * @Assert\Length(
 	 *      min = 5,
 	 *      max = 255,
-	 *      minMessage = "De naam moet ten minste {{ limit }} karakters lang zijn",
-	 *      maxMessage = "De naam kan niet langer dan {{ limit }} karakters zijn"
+	 *      minMessage = "De naam moet ten minste {{ limit }} tekens lang zijn",
+	 *      maxMessage = "De naam kan niet langer dan {{ limit }} tekens zijn"
 	 * )
 	 * @Groups({"read", "write"})
 	 * @ApiProperty(
@@ -191,8 +196,8 @@ class Issue implements StringableInterface
 	 * @Assert\Length(
 	 *      min = 25,
 	 *      max = 2000,
-	 *      minMessage = "De beschrijving van uw probleem moet minimaal {{ limit }} karakters lang zijn",
-	 *      maxMessage = "De beschrijving van uw probleem kan nietlanger zijn dan {{ limit }} karakters")
+	 *      minMessage = "De beschrijving van uw probleem moet minimaal {{ limit }} tekens lang zijn",
+	 *      maxMessage = "De beschrijving van uw probleem kan nietlanger zijn dan {{ limit }} tekens")
 	 *
 	 * @Groups({"read", "write"})
 	 * @ApiProperty(
@@ -310,7 +315,7 @@ class Issue implements StringableInterface
 	}
 	
 	/**
-	 * Vanuit rendering perspectief (voor bijvoorbeeld loging of berichten) is het belangrijk dat we een entiteit altijd naar string kunnen omzetten
+	 * Vanuit rendering perspectief (voor bijvoorbeeld logging of berichten) is het belangrijk dat we een entiteit altijd naar string kunnen omzetten
 	 */
 	public function __toString()
 	{
