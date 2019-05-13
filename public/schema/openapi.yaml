@@ -5,7 +5,7 @@ info:
     Fijn dat je de tijd en moeite hebt genomen om je te verdiepen in dit component. Het "Contactregistraties" component is ontwikkeld voor de gemeente Utrecht en heeft als functie het versturen van SMS, E-Mail, Whatsapp berichten of reguliere post naar burgers, aan de hand van vooraf ingestelde sjablonen. Ook is het mogelijk om met de juiste credentials berichten in te zien.
     
     # Ondersteuning
-    Wordt lid van het slackkanaal [https://zaakonline.slack.com](https://zaakonline.slack.com) voor ondersteuning door het ontwikkel team. En regelmatige updates over de ontwikkelingen op het gebied van de zaakonline componenten.
+    Word lid van het slackkanaal [https://zaakonline.slack.com](https://zaakonline.slack.com) voor ondersteuning door het ontwikkel team. En krijg regelmatig updates over de ontwikkelingen op het gebied van de zaakonline componenten.
     
     # Common ground en open source
     Om het voor alle partijen zo makkelijk mogelijk te maken, stellen we zo veel mogelijk informatie over dit component openbaar beschikbaar.
@@ -36,7 +36,7 @@ info:
     Kijk voor meer details over de mogelijkheden voor filteren en sorteren bij de GET (verzamel) endpoint van de entiteit die je wilt ophalen.
     
     # Scopes
-    Applicaties kunnen op deze API alleen wijzigingen uitvoeren waarvoor zij over de juiste rechten(scopes) beschikken. De op deze api verschikbare scopes zijn:
+    Applicaties kunnen op deze API alleen wijzigingen uitvoeren waarvoor zij over de juiste rechten(scopes) beschikken. De op deze api beschikbare scopes zijn:
      - issues:schrijven
      - issues:lezen
      - issues:maken
@@ -98,14 +98,7 @@ paths:
           description: 'Resource not found'
     put:
       summary: 'Werk bij'
-      description: 'Werk een Applicatie bij.'
-      responses:
-        202:
-          description: 'applicatie bijgewerkt'
-        400:
-          description: 'Ongeldige aanvraag'
-        404:
-          description: 'Applicatie niet gevonden'
+      description: 'Werk een Applicatie bij'
       tags:
         - Applicatie
       operationId: putApplicatieItem
@@ -116,6 +109,23 @@ paths:
           required: true
           schema:
             type: string
+      responses:
+        200:
+          description: 'Applicatie resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Applicatie'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Applicatie'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Applicatie'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
       requestBody:
         content:
           application/ld+json:
@@ -131,10 +141,7 @@ paths:
   '/applicatie/{id}/log':
     get:
       summary: Logboek
-      description: 'Bekijk de wijzigingen op dit Applicatie object.'
-      consumes:
-        - application/json
-        - text/html
+      description: 'Bekijk de wijzigingen op dit Applicatie object'
       tags:
         - Applicatie
       operationId: logApplicatieItem
@@ -163,7 +170,7 @@ paths:
   /applicaties:
     get:
       summary: Verzameling
-      description: 'Haal een verzameling van Applicaties op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).'
+      description: 'Haal een verzameling van Applicaties op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resultaten onder [filteren](/#section/Filteren).'
       tags:
         - Applicatie
       operationId: getApplicatieCollection
@@ -515,19 +522,32 @@ paths:
     post:
       summary: 'Token halen'
       description: 'Inloggen als Applicatie en JWT Token ophalen'
-      consumes:
-        - application/json
-        - text/html
-      produces:
-        - application/json
-      responses:
-        200:
-          description: 'Applicatie succesvol ingelogd'
-        401:
-          description: 'Applicatie niet ingelogd'
       tags:
         - Applicatie
       operationId: loginApplicatieCollection
+      responses:
+        201:
+          description: 'Applicatie resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Applicatie-applicatie:lezen'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Applicatie-applicatie:lezen'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Applicatie-applicatie:lezen'
+          links:
+            GetApplicatieItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getApplicatieItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /applicatie/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
       requestBody:
         content:
           application/ld+json:
@@ -544,19 +564,32 @@ paths:
     post:
       summary: Registreren
       description: 'Registreer een nieuwe Applicatie voor dit component'
-      consumes:
-        - application/json
-        - text/html
-      produces:
-        - application/json
-      responses:
-        201:
-          description: 'Applicatie aangemaakt'
-        400:
-          description: 'Ongeldige aanvraag'
       tags:
         - Applicatie
       operationId: registerApplicatieCollection
+      responses:
+        201:
+          description: 'Applicatie resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Applicatie-applicatie:lezen'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Applicatie-applicatie:lezen'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Applicatie-applicatie:lezen'
+          links:
+            GetApplicatieItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getApplicatieItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /applicatie/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
       requestBody:
         content:
           application/ld+json:
@@ -603,7 +636,7 @@ components:
           minLength: 8
           description: 'Het RSIN van de organisatie waartoe deze Applicatie behoort. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
         isActief:
-          description: 'Word gebruikt om aan te geven of deze applicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden'
+          description: 'Wordt gebruikt om aan te geven of deze applicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden'
           type: boolean
         registratiedatum:
           description: 'Het tijdstip waarop deze Applicatie is aangemaakt'
@@ -628,7 +661,7 @@ components:
           readOnly: true
           type: boolean
         username:
-          description: 'Username wordt door symfony gebruikt voor de gebruikersnaam maar in de context common ground component api gebruiken we hem niet en onderdrukken we hem door hem aan geen groepen toe te wijzen'
+          description: 'Username wordt door symfony gebruikt voor de gebruikersnaam maar in de context common ground component api gebruiken we hem niet en onderdrukken we hem door hem niet toe te wijzen aan groepen.'
         password:
           readOnly: true
         salt:
@@ -669,7 +702,7 @@ components:
           minLength: 8
           description: 'Het RSIN van de organisatie waartoe deze Applicatie behoort. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
         isActief:
-          description: 'Word gebruikt om aan te geven of deze applicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden'
+          description: 'Wordt gebruikt om aan te geven of deze applicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden'
           type: boolean
         registratiedatum:
           description: 'Het tijdstip waarop deze Applicatie is aangemaakt'
@@ -753,7 +786,7 @@ components:
           description: 'De naam van deze locatie <br /><b>Schema:</b> <a href="https://schema.org/name">https://schema.org/name</a>'
           type: string
         beschrijving:
-          description: 'Een beschrijvende tekst over deze locatie  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
+          description: 'Een uitgebreide beschrijvende tekst over dit Issue bedoeld ter verdere verduidelijking.  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
           type: string
         voornamen:
           type: string
