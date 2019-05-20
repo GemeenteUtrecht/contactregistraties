@@ -38,7 +38,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/issues",
  *  		"openapi_context" = {
- * 				"summary" = "Haalt een verzameling van issues op"
+ * 				"summary" = "Haal een verzameling van issues op"
  *  		}
  *  	},
  *  	"post"={
@@ -84,7 +84,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
 class Issue implements StringableInterface
 {
 	/**
-	 * Het identificatie nummer van dit Issue <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>
+	 * Het identificatienummer van dit Issue <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>
 	 *
 	 * @var int|null
 	 *
@@ -97,7 +97,7 @@ class Issue implements StringableInterface
 	public $id;
 	
 	/**
-	 * De unieke identificatie van dit object binnen de organisatie die dit object heeft gecreeerd. <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>
+	 * De unieke identificatie van dit object binnen de organisatie die dit object heeft gecreëerd. <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>
 	 *
 	 * @var string
 	 * @ORM\Column(
@@ -125,7 +125,7 @@ class Issue implements StringableInterface
 	public $identificatie;
 	
 	/**
-	 * Het RSIN van de organisatie waartoe deze Issue behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN word bepaald aan de hand van de gauthenticeerde applicatie en kan niet worden overschreven
+	 * Het RSIN van de organisatie waartoe dit Issue behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN wordt bepaald aan de hand van de geauthenticeerde applicatie en kan niet worden overschreven
 	 *
 	 * @var integer
 	 * @ORM\Column(
@@ -180,7 +180,7 @@ class Issue implements StringableInterface
 	public $type = "contact";
 	
 	/**
-	 * De naam van deze locatie <br /><b>Schema:</b> <a href="https://schema.org/name">https://schema.org/name</a>
+	 * De naam van dit issue <br /><b>Schema:</b> <a href="https://schema.org/name">https://schema.org/name</a>
 	 *
 	 * @var string
 	 *
@@ -231,7 +231,7 @@ class Issue implements StringableInterface
 	 *     attributes={
 	 *         "swagger_context"={
 	 *             "type"="string",
-	 *             "example"="Deze prachtige locatie is zeker het aanbevelen waard"
+	 *             "example"="Dit Issue beschrijft de response tijden van het systeem"
 	 *         }
 	 *     }
 	 * )
@@ -299,7 +299,7 @@ class Issue implements StringableInterface
 	public $telefoonnummer;	
 	
 	/**
-	 * De taal waarin de informatie van deze locatie is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>
+	 * De taal waarin de informatie van dit Issue is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>
 	 *
 	 * @var string Een Unicode language identifier, ofwel RFC 3066 taalcode.
 	 *
@@ -348,7 +348,7 @@ class Issue implements StringableInterface
 	public $wijzigingsdatum;
 	
 	/**
-	 * Het contact persoon voor deze Issue
+	 * De contactpersoon voor dit Issue
 	 *
 	 * @ORM\Column(
 	 *     type     = "string",

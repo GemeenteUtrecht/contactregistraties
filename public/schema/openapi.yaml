@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   description: |
-    Welkom innovator! <br>
+    # Welkom innovator!
     Fijn dat je de tijd en moeite hebt genomen om je te verdiepen in dit component. Het "Contactregistraties" component is ontwikkeld voor de gemeente Utrecht en heeft als functie het versturen van SMS, E-Mail, Whatsapp berichten of reguliere post naar burgers, aan de hand van vooraf ingestelde sjablonen. Ook is het mogelijk om met de juiste credentials berichten in te zien.
     
     # Ondersteuning
@@ -53,7 +53,7 @@ info:
     
     Let er bij het meegeven van JWT tokens op dat deze moet worden voorafgegaan door een Bearer en een spatie, onder de header Authorization. De volledig naam wordt daarmee: 'Authorization: Bearer [TOKEN]'.
     
-  version: 0.0.1
+  version: '0.0.20 Alpha'
   title: 'Contactregistraties  API'
   termsOfService: 'http://www.zaakonline.nl/terms/'
   contact:
@@ -70,7 +70,7 @@ paths:
   '/applicatie/{id}':
     get:
       summary: 'Haal op'
-      description: 'Haal een Applicatie op'
+      description: 'Haal een Applicatie op.'
       tags:
         - Applicatie
       operationId: getApplicatieItem
@@ -98,7 +98,7 @@ paths:
           description: 'Resource not found'
     put:
       summary: 'Werk bij'
-      description: 'Werk een Applicatie bij'
+      description: 'Werk een Applicatie bij.'
       tags:
         - Applicatie
       operationId: putApplicatieItem
@@ -141,7 +141,7 @@ paths:
   '/applicatie/{id}/log':
     get:
       summary: Logboek
-      description: 'Bekijk de wijzigingen op dit Applicatie object'
+      description: 'Bekijk de wijzigingen op dit Applicatie object.'
       tags:
         - Applicatie
       operationId: logApplicatieItem
@@ -346,7 +346,7 @@ paths:
             type: string
   /issues:
     get:
-      summary: 'Haalt een verzameling van issues op'
+      summary: 'Haal een verzameling van issues op'
       tags:
         - Issue
       operationId: getIssueCollection
@@ -521,7 +521,7 @@ paths:
   /login_check:
     post:
       summary: 'Token halen'
-      description: 'Inloggen als Applicatie en JWT Token ophalen'
+      description: 'Inloggen als Applicatie en JWT Token ophalen.'
       tags:
         - Applicatie
       operationId: loginApplicatieCollection
@@ -563,7 +563,7 @@ paths:
   /registreer:
     post:
       summary: Registreren
-      description: 'Registreer een nieuwe Applicatie voor dit component'
+      description: 'Registreer een nieuwe Applicatie voor dit component.'
       tags:
         - Applicatie
       operationId: registerApplicatieCollection
@@ -636,10 +636,10 @@ components:
           minLength: 8
           description: 'Het RSIN van de organisatie waartoe deze Applicatie behoort. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
         isActief:
-          description: 'Wordt gebruikt om aan te geven of deze applicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden'
+          description: 'Wordt gebruikt om aan te geven of deze applicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden.'
           type: boolean
         registratiedatum:
-          description: 'Het tijdstip waarop deze Applicatie is aangemaakt'
+          description: 'Het tijdstip waarop deze Applicatie is aangemaakt.'
           type: string
           format: date-time
         wijzigingsdatum:
@@ -702,10 +702,10 @@ components:
           minLength: 8
           description: 'Het RSIN van de organisatie waartoe deze Applicatie behoort. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
         isActief:
-          description: 'Wordt gebruikt om aan te geven of deze applicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden'
+          description: 'Wordt gebruikt om aan te geven of deze applicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden.'
           type: boolean
         registratiedatum:
-          description: 'Het tijdstip waarop deze Applicatie is aangemaakt'
+          description: 'Het tijdstip waarop deze Applicatie is aangemaakt.'
           type: string
           format: date-time
         wijzigingsdatum:
@@ -759,12 +759,12 @@ components:
       description: Issue
       properties:
         id:
-          description: 'Het identificatie nummer van dit Issue <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>'
+          description: 'Het identificatienummer van dit Issue <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>'
           type: integer
         identificatie:
           type: string
           example: 6a36c2c4-213e-4348-a467-dfa3a30f64aa
-          description: 'De unieke identificatie van dit object binnen de organisatie die dit object heeft gecreeerd. <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>'
+          description: 'De unieke identificatie van dit object binnen de organisatie die dit object heeft gecreëerd. <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>'
           maxLength: 40
         bronOrganisatie:
           title: bronOrganisatie
@@ -773,7 +773,7 @@ components:
           required: 'true'
           maxLength: 9
           minLength: 8
-          description: 'Het RSIN van de organisatie waartoe deze Issue behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN word bepaald aan de hand van de gauthenticeerde applicatie en kan niet worden overschreven'
+          description: 'Het RSIN van de organisatie waartoe dit Issue behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN wordt bepaald aan de hand van de geauthenticeerde applicatie en kan niet worden overschreven'
         type:
           type: string
           enum:
@@ -783,7 +783,7 @@ components:
           default: contact
           description: 'Het type van dit issue <br /><b>Schema:</b> <a href="https://schema.org/additionalType">https://schema.org/additionalType</a>'
         naam:
-          description: 'De naam van deze locatie <br /><b>Schema:</b> <a href="https://schema.org/name">https://schema.org/name</a>'
+          description: 'De naam van dit issue <br /><b>Schema:</b> <a href="https://schema.org/name">https://schema.org/name</a>'
           type: string
         beschrijving:
           description: 'Een uitgebreide beschrijvende tekst over dit Issue bedoeld ter verdere verduidelijking.  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
@@ -807,7 +807,7 @@ components:
         telefoonnummer:
           description: 'De familienaam van de persoon die je probeert uit te nodigen. <br /><b>Schema:</b> <a href="https://schema.org/familyName">https://schema.org/familyName</a>'
         taal:
-          description: 'De taal waarin de informatie van deze locatie is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>'
+          description: 'De taal waarin de informatie van dit Issue is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>'
           type: string
         registratiedatum:
           description: 'Het tijdstip waarop dit Issue object is aangemaakt'
@@ -824,7 +824,7 @@ components:
           required: 'true'
           maxLength: 255
           format: uri
-          description: 'Het contact persoon voor deze Issue'
+          description: 'De contactpersoon voor dit Issue'
         eigenaar:
           description: 'Met eigenaar wordt bijgehouden welke  applicatie verantwoordelijk is voor het object, en daarvoor de rechten beheerd en uitgeeft. In die zin moet de eigenaar dan ook worden gezien in de trant van autorisatie en configuratie in plaats van als onderdeel van het datamodel.'
           type: string
