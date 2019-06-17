@@ -115,7 +115,7 @@ class Issue implements StringableInterface
 	 *         "openapi_context"={
 	 *             "type"="string",
 	 *             "example"="6a36c2c4-213e-4348-a467-dfa3a30f64aa",
-	 *             "description"="De unieke identificatie van dit object de organisatie die dit object heeft gecreeerd.",
+	 *             "description"="De unieke identificatie van dit object de organisatie die dit object heeft gecreëerd.",
 	 *             "maxLength"=40
 	 *         }
 	 *     }
@@ -239,7 +239,7 @@ class Issue implements StringableInterface
 	public $beschrijving;	
 	
 	/**
-	 * Het emailadres van de persoon die je probeert te uit te nodigen. <br /><b>Schema:</b> <a href="https://schema.org/givenName">https://schema.org/givenName</a>
+	 * de voornaam van de persoon die je probeert te uit te nodigen. <br /><b>Schema:</b> <a href="https://schema.org/givenName">https://schema.org/givenName</a>
 	 *
 	 * @var string
 	 * @ORM\Column(
@@ -262,7 +262,7 @@ class Issue implements StringableInterface
 	public $voornamen;
 	
 	/**
-	 * De familienaam van de persoon die je probeert uit te nodigen. <br /><b>Schema:</b> <a href="https://schema.org/familyName">https://schema.org/familyName</a>
+	 * De familienaam van de persoon. <br /><b>Schema:</b> <a href="https://schema.org/familyName">https://schema.org/familyName</a>
 	 *
 	 * @var string
 	 * @ORM\Column(
@@ -285,16 +285,34 @@ class Issue implements StringableInterface
 	public $geslachtsnaam;	
 	
 	/**
-	 * De familienaam van de persoon die je probeert uit te nodigen. <br /><b>Schema:</b> <a href="https://schema.org/familyName">https://schema.org/familyName</a>
+	 * Het emailadres. <br /><b>Schema:</b> <a href="https://schema.org/email">https://schema.org/email</a>
 	* @todo zou emailadres moeten zijn
+	* @ApiProperty(
+	*     attributes={
+	*         "openapi_context"={
+	*             "type"="string",
+	*             "example"="john@do.org"
+	*         }
+	*     }
+	* )
 	* @Groups({"read","write"})
 	*/
 	public $email;	
 	
 	/**
-	 * De familienaam van de persoon die je probeert uit te nodigen. <br /><b>Schema:</b> <a href="https://schema.org/familyName">https://schema.org/familyName</a>
+	 * Een telefoonnummer. <br /><b>Schema:</b> <a href="https://schema.org/telephone">https://schema.org/telephone</a>
 	 *
+	 * @ApiProperty(
+	 *     attributes={
+	 *         "openapi_context"={
+	 *             "type"="string",
+	 *             "example"="+31 6 12345678"
+	 *         }
+	 *     }
+	 * )
 	 * @Groups({"read","write"})
+	 *
+	 * 
 	 */
 	public $telefoonnummer;	
 	

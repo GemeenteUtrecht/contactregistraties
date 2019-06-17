@@ -794,18 +794,22 @@ components:
           required: 'true'
           maxLength: 250
           readOnly: false
-          description: 'Het emailadres van de persoon die je probeert te uit te nodigen. <br /><b>Schema:</b> <a href="https://schema.org/givenName">https://schema.org/givenName</a>'
+          description: 'de voornaam van de persoon die je probeert te uit te nodigen. <br /><b>Schema:</b> <a href="https://schema.org/givenName">https://schema.org/givenName</a>'
         geslachtsnaam:
           type: string
           example: Do
           required: 'true'
           maxLength: 250
           readOnly: false
-          description: 'De familienaam van de persoon die je probeert uit te nodigen. <br /><b>Schema:</b> <a href="https://schema.org/familyName">https://schema.org/familyName</a>'
+          description: 'De familienaam van de persoon. <br /><b>Schema:</b> <a href="https://schema.org/familyName">https://schema.org/familyName</a>'
         email:
-          description: 'De familienaam van de persoon die je probeert uit te nodigen. <br /><b>Schema:</b> <a href="https://schema.org/familyName">https://schema.org/familyName</a>'
+          type: string
+          example: john@do.org
+          description: 'Het emailadres. <br /><b>Schema:</b> <a href="https://schema.org/email">https://schema.org/email</a>'
         telefoonnummer:
-          description: 'De familienaam van de persoon die je probeert uit te nodigen. <br /><b>Schema:</b> <a href="https://schema.org/familyName">https://schema.org/familyName</a>'
+          type: string
+          example: '+31 6 12345678'
+          description: 'Een telefoonnummer. <br /><b>Schema:</b> <a href="https://schema.org/telephone">https://schema.org/telephone</a>'
         taal:
           description: 'De taal waarin de informatie van dit Issue is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>'
           type: string
